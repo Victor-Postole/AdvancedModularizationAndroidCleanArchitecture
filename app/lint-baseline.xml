@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.1.4" type="baseline" client="gradle" dependencies="false" name="AGP (8.1.4)" variant="fatal" version="8.1.4">
+
+    <issue
+        id="NetworkSecurityConfig"
+        message="Invalid pin digest"
+        errorLine1="            &lt;pin digest=&quot;SHA-256&quot;>46YGkdskOspdspskkdsgRg=&lt;/pin>"
+        errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/release/res/xml/network_security_config.xml"
+            line="13"
+            column="35"/>
+    </issue>
+
+</issues>

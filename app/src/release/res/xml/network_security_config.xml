@@ -6,12 +6,11 @@
         </trust-anchors>
     </base-config>
 
-    <domain-config cleartextTrafficPermitted="false">
-        <domain includeSubdomains="true" name="prod.myapp.com" />
+<!--    <domain-config cleartextTrafficPermitted="false">-->
+<!--        <domain includeSubdomains="true" name="prod.myapp.com" />-->
 
-        <pin-set>
-            <pin digest="SHA-256">46YGkdskOspdspskkdsgRg=</pin>
-        </pin-set>
-    </domain-config>
+<!--        <pin digest="SHA-256">AICI_PIN_VALID_BASE64</pin>-->
+
+<!--    </domain-config>-->
 
 </network-security-config>

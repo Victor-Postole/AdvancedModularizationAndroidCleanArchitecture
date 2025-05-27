@@ -1,6 +1,18 @@
+import build.BuildConfig
+import build.BuildDimensions
+import build.BuildTypes
+import dependencies.Dependencies
+import dependencies.DependenciesVersions
+import flavors.BuildFlavor
+import release.RealeaseConfig
+import signing.BuildCreator
+import signing.BuildSigning
+import test.TestBuildConfig
+import test.TestDependencies
+
 plugins {
-    id(BuildPlugins.ANDROID_APPLICATION)
-    id(BuildPlugins.KOTLIN_ANDROID)
+    id(plugs.BuildPlugins.ANDROID_APPLICATION)
+    id(plugs.BuildPlugins.KOTLIN_ANDROID)
 }
 
 android {
@@ -17,40 +29,27 @@ android {
         testInstrumentationRunner = TestBuildConfig.TEST_INSTRUMENTATION_RUNNER
     }
 
-
     signingConfigs {
-        BuildSigning.Release.create(this)
-        BuildSigning.ReleaseExternalQa.create(this)
-        BuildSigning.Debug.create(this)
+        BuildSigning.Release.create(this, project)
+        BuildSigning.ReleaseExternalQa.create(this, project)
+        BuildSigning.Debug.create(this, project)
     }
 
     buildTypes {
+        BuildCreator.Release(project).create(this).apply {
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
 
-        getByName(BuildTypes.RELEASE) {
-           proguardFiles(
-               getDefaultProguardFile("proguard-android-optimize.txt"),
-               "proguard-rules.pro"
-           )
-           isMinifyEnabled = Build.Release.isMinifyEnabled
-           enableUnitTestCoverage = Build.Release.enableUnitTestCoverage
-           isDebuggable = Build.Release.isDebuggable
             signingConfig = signingConfigs.getByName(BuildTypes.RELEASE)
-       }
+        }
 
-        getByName(BuildTypes.DEBUG){
-            applicationIdSuffix = Build.Debug.applicationIdSuffix
-            versionNameSuffix = Build.Debug.versionNameSuffix
-            isMinifyEnabled = Build.Debug.isMinifyEnabled
-            enableUnitTestCoverage = Build.Debug.enableUnitTestCoverage
-            isDebuggable = Build.Debug.isDebuggable
+        BuildCreator.Debug(project).create(this).apply {
             signingConfig = signingConfigs.getByName(BuildTypes.DEBUG)
         }
 
-        create(BuildTypes.RELEASE_EXTERNAL_QA) {
-            applicationIdSuffix = Build.ReleaseExternalQa.applicationIdSuffix
-            versionNameSuffix = Build.ReleaseExternalQa.versionNameSuffix
-            isMinifyEnabled = Build.ReleaseExternalQa.isMinifyEnabled
-            enableUnitTestCoverage = Build.ReleaseExternalQa.enableUnitTestCoverage
+        BuildCreator.ReleaseExternalQa(project).create(this).apply {
             signingConfig = signingConfigs.getByName(BuildTypes.RELEASE_EXTERNAL_QA)
         }
     }
@@ -74,6 +73,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
