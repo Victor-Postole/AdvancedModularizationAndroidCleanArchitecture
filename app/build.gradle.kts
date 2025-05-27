@@ -15,14 +15,18 @@ android {
         versionName = RealeaseConfig.VERSION_NAME
 
         testInstrumentationRunner = TestBuildConfig.TEST_INSTRUMENTATION_RUNNER
+    }
 
-        ndk {
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
-        }
+
+    signingConfigs {
+        BuildSigning.Release.create(this)
+        BuildSigning.ReleaseExternalQa.create(this)
+        BuildSigning.Debug.create(this)
     }
 
     buildTypes {
-       getByName(BuildTypes.RELEASE) {
+
+        getByName(BuildTypes.RELEASE) {
            proguardFiles(
                getDefaultProguardFile("proguard-android-optimize.txt"),
                "proguard-rules.pro"
@@ -30,6 +34,7 @@ android {
            isMinifyEnabled = Build.Release.isMinifyEnabled
            enableUnitTestCoverage = Build.Release.enableUnitTestCoverage
            isDebuggable = Build.Release.isDebuggable
+            signingConfig = signingConfigs.getByName(BuildTypes.RELEASE)
        }
 
         getByName(BuildTypes.DEBUG){
@@ -38,6 +43,7 @@ android {
             isMinifyEnabled = Build.Debug.isMinifyEnabled
             enableUnitTestCoverage = Build.Debug.enableUnitTestCoverage
             isDebuggable = Build.Debug.isDebuggable
+            signingConfig = signingConfigs.getByName(BuildTypes.DEBUG)
         }
 
         create(BuildTypes.RELEASE_EXTERNAL_QA) {
@@ -45,6 +51,7 @@ android {
             versionNameSuffix = Build.ReleaseExternalQa.versionNameSuffix
             isMinifyEnabled = Build.ReleaseExternalQa.isMinifyEnabled
             enableUnitTestCoverage = Build.ReleaseExternalQa.enableUnitTestCoverage
+            signingConfig = signingConfigs.getByName(BuildTypes.RELEASE_EXTERNAL_QA)
         }
     }
 
