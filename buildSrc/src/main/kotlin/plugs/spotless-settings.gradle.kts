@@ -1,93 +1,81 @@
-import com.diffplug.gradle.spotless.SpotlessPlugin
+import io.gitlab.arturbosch.detekt.DetektPlugin
 
-apply<SpotlessPlugin>()
+val DETEKT_VERSION = "1.23.3"
+apply<DetektPlugin>()
 
-@Suppress("INACCESSIBLE_TYPE")
-configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+configure<io.gitlab.arturbosch.detekt.extensions.DetektExtension> {
+    toolVersion = DETEKT_VERSION
+    source.from("src/main/java", "src/main/kotlin")
+    parallel = false
+    config.from("${rootProject.projectDir}/detekt/detekt-config.yml")
+    buildUponDefaultConfig = false
+    allRules = false
+    baseline = file("${rootProject.projectDir}/detekt/${project.name}/detekt-baseline.xml")
+    disableDefaultRuleSets = false
+    debug = true
+    ignoreFailures = false
+    ignoredBuildTypes = listOf("release")
+    ignoredFlavors = listOf("huawei")
+    ignoredVariants = listOf("googleRelease")
+    basePath = projectDir.absolutePath
 
-    format("xml") {
-        target("**/*.xml")
-        prettier(mapOf("prettier" to "2.7.1", "@prettier/plugin-xml" to "2.2.0"))
-            .config(
-                mapOf(
-                    "parser" to "xml",
-                    "tabWidth" to 4,
-                    "printWidth" to 80,
-                    "useTabs" to false,
-                    "semi" to true,
-                    "singleQuote" to false,
-                    "attributeSortOrder" to arrayOf("name", "id", "type"),
-                    "selfClosingTags" to arrayOf("br", "img")
-                )
-            )
-        indentWithSpaces(4)
-        trimTrailingWhitespace()
-        endWithNewline()
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
+    include("**/*.kt", "**/*.kts")
+    exclude(
+        "**/build/**",
+        ".*/resources/.*",
+        ".*test.*",
+        ".*/tmp/.*",
+        "**/generated/**"
+    )
+    reports {
+        xml {
+            required.set(true)
+            outputLocation.set(file("${rootProject.projectDir}/detekt/${project.name}/detekt-report.xml"))
+        }
+        html {
+            required.set(true)
+            outputLocation.set(file("${rootProject.projectDir}/detekt/${project.name}/detekt-report.html"))
+        }
+        sarif {
+            required.set(true)
+            outputLocation.set(file("${rootProject.projectDir}/detekt/${project.name}/detekt-report.sarif"))
+        }
+        md {
+            required.set(true)
+            outputLocation.set(file("${rootProject.projectDir}/detekt/${project.name}/detekt-report.md"))
+        }
+        txt {
+            required.set(true)
+            outputLocation.set(file("${rootProject.projectDir}/detekt/${project.name}/detekt-report.txt"))
+        }
     }
-
-    kotlin {
-        target(
-            fileTree(
-                mapOf(
-                    "dir" to ".",
-                    "include" to listOf("**/*.kt"),
-                    "exclude" to listOf("**/build/**", "**/buildSrc/**", "**/.*")
-                )
-            )
-        )
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        ktlint("0.49.0")
-            .userData(mapOf("android" to "true", "max_line_length" to "120"))
-            .editorConfigOverride(mapOf("indent_size" to 2))
-    }
-
-    java {
-        target(
-            fileTree(
-                mapOf(
-                    "dir" to ".",
-                    "include" to listOf("**/*.java"),
-                    "exclude" to listOf("**/build/**", "**/buildSrc/**", "**/.*")
-                )
-            )
-        )
-
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        // eclipse()
-        // The eclipse() method in the spotless plugin is used to apply the Eclipse Code Formatter to Java files.
-        // While it's originally associated with Eclipse IDE, it doesn't mean that it only works with Eclipse projects.
-        // The Eclipse formatter configuration can be used by other IDEs, including Android Studio.
-        googleJavaFormat()
-        //method is used as the formatter for Java files.
-        // googleJavaFormat is a formatter that follows the Google Java Style Guide.
-    }
-
-    kotlinGradle {
-        target(
-            fileTree(
-                mapOf(
-                    "dir" to ".",
-                    "include" to listOf("**/*.gradle.kts", "*.gradle.kts"),
-                    "exclude" to listOf("**/build/**")
-                )
-            )
-        )
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-        ktlint("0.49.0")
-            .userData(mapOf("android" to "true"))
-            .editorConfigOverride(mapOf("indent_size" to 2))
+    jvmTarget = JavaVersion.VERSION_17.toString()
+    dependencies {
+        "detektPlugins"("io.gitlab.arturbosch.detekt:detekt-formatting:${DETEKT_VERSION}")
     }
 }
 
-tasks.named("preBuild") {
-    dependsOn("spotlessCheck")
+tasks.registering(io.gitlab.arturbosch.detekt.report.ReportMergeTask::class) {
+    group = "reporting"
+    description = "Merges all detekt reports into one report file."
+    dependsOn("detekt") // Add this line to declare the dependency
 }
+
+/*
+In Gradle with Detekt, the detektBaseline task is used to create or update a baseline file.
+ The baseline file is a record of existing issues in the codebase that you want to exclude
+  from being reported as new issues in future Detekt runs.
+   This is particularly useful when you are introducing Detekt to an existing codebase,
+ as it allows you to focus on new issues rather than addressing existing ones immediately
+ */
+tasks.named("detekt") {
+    dependsOn("detektBaseline")
+    dependsOn(":features:login:detektBaseline")
+}
+
 tasks.named("preBuild") {
-    dependsOn("spotlessApply")
+    dependsOn("detekt")
 }

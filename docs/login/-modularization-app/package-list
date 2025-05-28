@@ -1,0 +1,15 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.sistem.login////PointingToDeclaration/-modularization-app/com.sistem.login/index.html
+$dokka.location:com.sistem.login/ExampleInstrumentedTest///PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-example-instrumented-test/index.html
+$dokka.location:com.sistem.login/ExampleInstrumentedTest/ExampleInstrumentedTest/#/PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-example-instrumented-test/-example-instrumented-test.html
+$dokka.location:com.sistem.login/ExampleInstrumentedTest/useAppContext/#/PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-example-instrumented-test/use-app-context.html
+$dokka.location:com.sistem.login/ExampleUnitTest///PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-example-unit-test/index.html
+$dokka.location:com.sistem.login/ExampleUnitTest/ExampleUnitTest/#/PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-example-unit-test/-example-unit-test.html
+$dokka.location:com.sistem.login/ExampleUnitTest/addition_isCorrect/#/PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-example-unit-test/addition_is-correct.html
+$dokka.location:com.sistem.login/Test///PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-test/index.html
+$dokka.location:com.sistem.login/Test/Test/#/PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-test/-test.html
+$dokka.location:com.sistem.login/Test/loginloginlogingloginglogin/#/PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-test/loginloginlogingloginglogin.html
+$dokka.location:com.sistem.login/Test/test/#/PointingToDeclaration/-modularization-app/com.sistem.login/[-j-v-m]-test/test.html
+com.sistem.login
+

@@ -1,0 +1,30 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.sistem.multimodule.ui.theme////PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/index.html
+$dokka.location:com.sistem.multimodule.ui.theme//MultiModuleTheme/#kotlin.Boolean#kotlin.Boolean#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/[-j-v-m]-multi-module-theme.html
+$dokka.location:com.sistem.multimodule.ui.theme//Pink40/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/-pink40.html
+$dokka.location:com.sistem.multimodule.ui.theme//Pink80/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/-pink80.html
+$dokka.location:com.sistem.multimodule.ui.theme//Purple40/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/-purple40.html
+$dokka.location:com.sistem.multimodule.ui.theme//Purple80/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/-purple80.html
+$dokka.location:com.sistem.multimodule.ui.theme//PurpleGrey40/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/-purple-grey40.html
+$dokka.location:com.sistem.multimodule.ui.theme//PurpleGrey80/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/-purple-grey80.html
+$dokka.location:com.sistem.multimodule.ui.theme//Typography/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule.ui.theme/-typography.html
+$dokka.location:com.sistem.multimodule////PointingToDeclaration/-modularization-app/com.sistem.multimodule/index.html
+$dokka.location:com.sistem.multimodule//Greeting/#[Error type: Unresolved type for Modifier]/PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-greeting.html
+$dokka.location:com.sistem.multimodule//Greeting/#androidx.compose.ui.Modifier/PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-greeting.html
+$dokka.location:com.sistem.multimodule//GreetingPreview/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-greeting-preview.html
+$dokka.location:com.sistem.multimodule/ExampleInstrumentedTest///PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-example-instrumented-test/index.html
+$dokka.location:com.sistem.multimodule/ExampleInstrumentedTest/ExampleInstrumentedTest/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-example-instrumented-test/-example-instrumented-test.html
+$dokka.location:com.sistem.multimodule/ExampleInstrumentedTest/useAppContext/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-example-instrumented-test/use-app-context.html
+$dokka.location:com.sistem.multimodule/ExampleUnitTest///PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-example-unit-test/index.html
+$dokka.location:com.sistem.multimodule/ExampleUnitTest/ExampleUnitTest/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-example-unit-test/-example-unit-test.html
+$dokka.location:com.sistem.multimodule/ExampleUnitTest/addition_isCorrect/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-example-unit-test/addition_is-correct.html
+$dokka.location:com.sistem.multimodule/MainActivity///PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-main-activity/index.html
+$dokka.location:com.sistem.multimodule/MainActivity/MainActivity/#/PointingToDeclaration/-modularization-app/com.sistem.multimodule/[-j-v-m]-main-activity/-main-activity.html
+$dokka.location:com.victor.provider////PointingToDeclaration/-modularization-app/com.victor.provider/index.html
+$dokka.location:com.victor.provider/DataProvider///PointingToDeclaration/-modularization-app/com.victor.provider/[-j-v-m]-data-provider/index.html
+$dokka.location:com.victor.provider/DataProvider/userName/#/PointingToDeclaration/-modularization-app/com.victor.provider/[-j-v-m]-data-provider/user-name.html
+com.sistem.multimodule
+com.sistem.multimodule.ui.theme
+com.victor.provider
+

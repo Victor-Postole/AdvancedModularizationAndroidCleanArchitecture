@@ -10,5 +10,7 @@ object BuildPlugins {
     const val HILT = "com.google.dagger.hilt.android"
     const val KTLINT = "ktlint-settings"
     const val SPOTLESS = "com.diffplug.spotless"
-    const val DETEKT = "io.gitlab.arturbosch.detekt"
+    const val DETEKT = "detekt-settings"
+    const val UPDATE_DEPS_VERSIONS = "update-dependencies"
+    const val DOKKA = "dokka-settings"
 }

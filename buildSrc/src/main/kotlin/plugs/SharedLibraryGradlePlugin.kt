@@ -21,6 +21,7 @@ class SharedLibraryGradlePlugin: Plugin<Project> {
         project.addConfigurations()
         project.applyAndroidConfigurations()
         project.applyKotlinOptions()
+
     }
 
     fun Project.addConfigurations() {
@@ -29,6 +30,8 @@ class SharedLibraryGradlePlugin: Plugin<Project> {
         plugins.apply(plugs.BuildPlugins.KTLINT)
         plugins.apply(plugs.BuildPlugins.SPOTLESS)
         plugins.apply(plugs.BuildPlugins.DETEKT)
+        plugins.apply(plugs.BuildPlugins.UPDATE_DEPS_VERSIONS)
+        plugins.apply(plugs.BuildPlugins.DOKKA)
     }
 
     fun Project.applyAndroidConfigurations() {

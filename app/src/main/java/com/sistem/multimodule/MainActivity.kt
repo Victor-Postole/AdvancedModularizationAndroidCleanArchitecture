@@ -31,10 +31,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-
-        val counter = 100
-
-        println(counter)
     }
 }
 
