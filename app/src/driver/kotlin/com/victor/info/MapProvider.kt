@@ -1,4 +1,3 @@
 package com.victor.info
 
-object MapProvider {
-}
+object MapProvider

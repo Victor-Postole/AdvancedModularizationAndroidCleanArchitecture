@@ -1,4 +1,3 @@
 package com.victor.provider
 
-object DataProvider {
-}
+object DataProvider

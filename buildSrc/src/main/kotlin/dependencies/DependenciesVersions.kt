@@ -19,5 +19,6 @@ object DependenciesVersions {
     const val GSON = "2.10.1"
     const val HILT = "2.44"
     const val ROOM = "2.6.1"
+    const val KOTLIN_COMPILER = "1.5.11"
 
 }

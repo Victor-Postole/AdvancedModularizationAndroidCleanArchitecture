@@ -1,30 +1,28 @@
 import build.BuildConfig
 import build.BuildDimensions
 import build.BuildTypes
-import dependencies.Dependencies
 import dependencies.DependenciesVersions
 import dependencies.androidx
 import dependencies.hilt
 import dependencies.loginModule
-import dependencies.okHttp
-import dependencies.retrofit
 import dependencies.room
+import dependencies.testDebugDeps
 import dependencies.testDeps
 import dependencies.testImplDeps
-import dependencies.testDebugDeps
-import dependencies.testImplementation
 import flavors.BuildFlavor
 import release.RealeaseConfig
 import signing.BuildCreator
 import signing.BuildSigning
 import test.TestBuildConfig
-import test.TestDependencies
 
 plugins {
     id(plugs.BuildPlugins.ANDROID_APPLICATION)
     id(plugs.BuildPlugins.KOTLIN_ANDROID)
     id(plugs.BuildPlugins.ANDROID)
-    kotlin(plugs.BuildPlugins.KAPT)
+    id(plugs.BuildPlugins.KAPT)
+    id(plugs.BuildPlugins.KTLINT)
+    id(plugs.BuildPlugins.SPOTLESS)
+    id(plugs.BuildPlugins.DETEKT)
 }
 
 android {
@@ -51,7 +49,7 @@ android {
         BuildCreator.Release(project).create(this).apply {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
 
             signingConfig = signingConfigs.getByName(BuildTypes.RELEASE)
@@ -81,7 +79,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
         compose = true
@@ -89,11 +87,9 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = DependenciesVersions.COMPOSE_COMPILER
+        kotlinCompilerExtensionVersion = DependenciesVersions.KOTLIN_COMPILER
     }
 }
-
-
 
 dependencies {
     loginModule()

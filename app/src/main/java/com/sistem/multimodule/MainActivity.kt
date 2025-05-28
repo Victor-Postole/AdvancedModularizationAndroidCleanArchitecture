@@ -17,27 +17,34 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.sistem.multimodule.ui.theme.MultiModuleTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             MultiModuleTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }
         }
+
+        val counter = 100
+
+        println(counter)
     }
 }
 
 @Composable
+@Suppress("FunctionNaming")
 fun Greeting(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "Hello ${BuildConfig.BASE_URL}!", modifier = modifier)
         Text(text = "Hello ${BuildConfig.DB_VERSION}!", modifier = modifier)
@@ -48,6 +55,7 @@ fun Greeting(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
+@Suppress("FunctionNaming")
 fun GreetingPreview() {
     MultiModuleTheme {
         Greeting()
